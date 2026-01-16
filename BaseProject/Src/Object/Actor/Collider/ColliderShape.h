@@ -1,0 +1,21 @@
+#pragma once
+
+//å`èÛ
+enum class SHAPE
+{
+	NONE,
+	LINE,
+	SPHERE,
+	CAPSULE,
+	BOX,
+	MODEL,
+
+	MESH,
+
+	TRIANGULAR_PYRAMID,
+	TRIANGULAR_PRISM,
+	CYLINDER,
+	CONE,
+
+	MAX
+};
