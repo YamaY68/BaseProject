@@ -19,6 +19,15 @@ Capsule::Capsule(int color)
 {
 }
 
+Capsule::Capsule(float radius, VECTOR localPosTop, VECTOR localPosDown)
+	:
+	ShapeBase(),
+	radius_(radius),
+	localPosTop_(localPosTop),
+	localPosDown_(localPosDown)
+{
+}
+
 Capsule::Capsule(float radius, VECTOR localPosTop, VECTOR localPosDown, int color)
 	:
 	ShapeBase(color),

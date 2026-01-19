@@ -17,6 +17,13 @@ Box::Box(int color)
 {
 }
 
+Box::Box(const VECTOR& halfSize)
+	:
+	ShapeBase(),
+	halfSize_(halfSize)
+{
+}
+
 Box::Box(const VECTOR& halfSize, int color)
 	:
 	ShapeBase(color),

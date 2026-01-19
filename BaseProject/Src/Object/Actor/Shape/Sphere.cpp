@@ -18,6 +18,13 @@ Sphere::Sphere(int color)
 {
 }
 
+Sphere::Sphere(float radius)
+	:
+	ShapeBase(),
+	radius_(radius)
+{
+}
+
 Sphere::Sphere(float radius, int color)
     :
 	ShapeBase(color),

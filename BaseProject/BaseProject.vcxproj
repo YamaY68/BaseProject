@@ -143,7 +143,8 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Src\Object\Actor\Component\InputComponent\InputComponent.cpp" />
+    <ClCompile Include="Src\Manager\System\MoveInputSystem\MoveInputSystem.cpp" />
+    <ClCompile Include="Src\Object\Actor\Component\PlayerInputComponent\PlayerInputComponent.cpp" />
     <ClCompile Include="Src\Object\Actor\Component\RigidBodyComponent\RigidBody.cpp" />
     <ClCompile Include="Src\Object\Actor\ActorBase.cpp" />
     <ClCompile Include="Src\Application.cpp" />
@@ -180,7 +181,8 @@
     <ClCompile Include="Src\Utility\AsoUtility.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Src\Object\Actor\Component\InputComponent\InputComponent.h" />
+    <ClInclude Include="Src\Manager\System\MoveInputSystem\MoveInputSystem.h" />
+    <ClInclude Include="Src\Object\Actor\Component\PlayerInputComponent\PlayerInputComponent.h" />
     <ClInclude Include="Src\Object\Actor\Component\RigidBodyComponent\RigidBody.h" />
     <ClInclude Include="Src\Object\Actor\ActorBase.h" />
     <ClInclude Include="Src\Application.h" />

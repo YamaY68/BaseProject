@@ -105,7 +105,7 @@
     <ClCompile Include="Src\Object\Actor\Component\RigidBodyComponent\RigidBody.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
-    <ClCompile Include="Src\Object\Actor\Component\InputComponent\InputComponent.cpp">
+    <ClCompile Include="Src\Object\Actor\Component\PlayerInputComponent\PlayerInputComponent.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
     <ClCompile Include="Src\Object\Actor\Shape\Box.cpp">
@@ -118,6 +118,9 @@
       <Filter>ソース ファイル</Filter>
     </ClCompile>
     <ClCompile Include="Src\Object\Actor\Shape\Sphere.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\Manager\System\MoveInputSystem\MoveInputSystem.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
   </ItemGroup>
@@ -227,7 +230,7 @@
     <ClInclude Include="Src\Object\Actor\Component\RigidBodyComponent\RigidBody.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="Src\Object\Actor\Component\InputComponent\InputComponent.h">
+    <ClInclude Include="Src\Object\Actor\Component\PlayerInputComponent\PlayerInputComponent.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
     <ClInclude Include="Src\Object\Actor\Shape\Box.h">
@@ -240,6 +243,9 @@
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
     <ClInclude Include="Src\Object\Actor\Shape\Sphere.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\Manager\System\MoveInputSystem\MoveInputSystem.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
   </ItemGroup>

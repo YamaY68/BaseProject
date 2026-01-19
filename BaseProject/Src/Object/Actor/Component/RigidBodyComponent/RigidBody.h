@@ -18,6 +18,9 @@ public:
 	void SetVelocity(const VECTOR& velocity);	//速度設定
 	void SetGrounded(bool isGrounded);	//地面に接地しているかどうか設定
 	void AddForce(const VECTOR& force);	//力を加える
+	//移動速度設定
+	void SetMoveSpeed(float speed) { moveSpeed_ = speed; }
+	void SetJumpPower(float power) { jumpPower_ = power; } //ジャンプ力設定
 
 	//取得関数
 	BodyType GetBodyType(void)const { return bodyType_; }	//剛体のタイプ
@@ -26,6 +29,11 @@ public:
 	const VECTOR& GetVelocity(void)const { return velocity_; }//速度
 	bool IsUseGravity(void)const { return useGravity_; }	//重力を受けるかどうか
 	bool IsGrounded(void)const { return isGrounded_; }	//地面に接地しているかどうか
+	
+	//移動速度取得
+	float GetMoveSpeed(void) const { return moveSpeed_; }
+	float GetJumpPower(void) const { return jumpPower_; } //ジャンプ力取得
+
 
 	void ClearForce(void) { force_ = VGet(0.0f, 0.0f, 0.0f); }
 
@@ -37,6 +45,9 @@ private:
 	VECTOR force_;	//力
 	bool useGravity_=true;	//重力を受けるかどうか
 	bool isGrounded_=false;	//地面に接地しているかどうか
+
+	float moveSpeed_ = 5.0f; //移動速度
+	float jumpPower_ = 10.0f; //ジャンプ力
 
 	//float friction_;	//摩擦係数
 	//float restitution_;	//反発係数

@@ -36,6 +36,16 @@ public:
 	//エンティティID設定
 	void SetEntityId(int id) { entityId_ = id; }
 
+	//コンポーネント追加
+	template<class T>
+	ActorBase& AddComponent(std::shared_ptr<T>component);
+	//コンポーネントがあるか
+	template<class T>
+	bool HasComponent(void);
+	//コンポーネント取得
+	template<class T>
+	T& GetComponent(void);
+
 protected:
 	virtual void SubLoad(void) {};
 	virtual void SubInit(void) {};
@@ -47,12 +57,6 @@ protected:
 
 	void SetOwnerActor2Colliders(void);
 
-	//コンポーネント追加
-	template<class T>
-	ActorBase& AddComponent(std::shared_ptr<T>component);
-	//コンポーネント取得
-	template<class T>
-	T& TryGetComponent(void);
 protected:
 
 	AnimationController* animationCOntroller_ = nullptr;
@@ -78,9 +82,16 @@ inline ActorBase& ActorBase::AddComponent(std::shared_ptr<T> component)
 	return *this;
 }
 
+
 template<class T>
-inline T& ActorBase::TryGetComponent(void)
+inline bool ActorBase::HasComponent(void)
 {
-	if (components_.find(std::type_index(typeid(T))) != components_.end())
+
+	return components_.find(std::type_index(typeid(T))) != components_.end();
+}
+
+template<class T>
+inline T& ActorBase::GetComponent(void)
+{
 	return *std::static_pointer_cast<T>(components_[std::type_index(typeid(T))]);
 }
