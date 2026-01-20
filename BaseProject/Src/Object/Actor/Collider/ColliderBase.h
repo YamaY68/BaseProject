@@ -49,6 +49,14 @@ public:
    {  
        return (maskA & LAYER_BIT(layerA)) != 0;  
    }  
+	// マスク作成
+   static uint32_t SetMask(std::initializer_list<Layer> layers)  
+   {  
+       uint32_t mask = 0;  
+       for (Layer layer : layers)  
+           mask |= LAYER_BIT(layer);  
+       return mask;  
+   }  
 protected:  
 	// ローカル座標から回転後のワールド座標を取得
    VECTOR GetRotPos(const VECTOR& localPos) const;  
@@ -66,15 +74,6 @@ protected:
 	ColliderInfo colliderInfo_;
 	int debugColor_;
 
-private:  
-	// マスク作成
-   static uint32_t MakeMask(std::initializer_list<Layer> layers)  
-   {  
-       uint32_t mask = 0;  
-       for (Layer layer : layers)  
-           mask |= LAYER_BIT(layer);  
-       return mask;  
-   }  
 private:
 	// デバッグ表示の色
 	static constexpr int COLOR_VALID = 0xff0000;

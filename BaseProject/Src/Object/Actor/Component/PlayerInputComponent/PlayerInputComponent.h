@@ -1,5 +1,7 @@
 #pragma once
-class PlayerInputComponent
+#include"../ComponentBase.h"
+
+class PlayerInputComponent :public ComponentBase
 {
 public:
 	PlayerInputComponent(int front, int back, int left, int right, int up, int down);

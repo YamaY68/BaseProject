@@ -36,6 +36,10 @@ public:
 	//エンティティID設定
 	void SetEntityId(int id) { entityId_ = id; }
 
+	//自身のコライダーリスト取得
+	const std::map<int, std::shared_ptr<ColliderBase>>& GetOwnColliders(void) const { return ownColliders_; }
+
+
 	//コンポーネント追加
 	template<class T>
 	ActorBase& AddComponent(std::shared_ptr<T>component);

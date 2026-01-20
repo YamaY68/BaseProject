@@ -1,10 +1,14 @@
 #pragma once
 #include<DxLib.h>
-
-class RigidBody
+#include"../ComponentBase.h"
+class RigidBody :public ComponentBase
 {
 
 public:
+
+	RigidBody();
+	~RigidBody();
+
 	enum class BodyType
 	{
 		STATIC,		//静的
@@ -29,7 +33,8 @@ public:
 	const VECTOR& GetVelocity(void)const { return velocity_; }//速度
 	bool IsUseGravity(void)const { return useGravity_; }	//重力を受けるかどうか
 	bool IsGrounded(void)const { return isGrounded_; }	//地面に接地しているかどうか
-	
+	VECTOR GetForce(void)const { return force_; }	//力
+
 	//移動速度取得
 	float GetMoveSpeed(void) const { return moveSpeed_; }
 	float GetJumpPower(void) const { return jumpPower_; } //ジャンプ力取得
