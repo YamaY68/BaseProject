@@ -6,6 +6,7 @@
 #include "../ActorTag.h"  
 #include "../../Common/Transform.h"
 
+
 struct ColliderInfo
 {
 	SHAPE shape;	//å`èÛ
