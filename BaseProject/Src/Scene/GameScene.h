@@ -5,10 +5,9 @@
 #include <memory>
 //#include"../Manager/System/CollisionSystem/CollisionSystem/CollisionSystem.h"
 //#include"../Manager/System/ContactSystem/ContactSystem.h"
-//#include"../Manager/System/InputSystem/InputSystem.h"
-//#include"../Manager/System/MoveSystem/MoveSystem.h"
+#include"../Manager/System/MoveInputSystem/MoveInputSystem.h"
 //#include"../Manager/System/ContactSystem/GameContactSystem.h"
-//#include"../Manager/System/PhysicsSystem/PhysicsSystem.h"
+#include"../Manager/System/PhysicsSystem/PhysicsSystem.h"
 
 class ActorBase;
 
@@ -40,9 +39,8 @@ private:
 	//ContactSystem contactSystem_;
 	//GameContactSystem gameContactSystem_;
 
-	//MoveSystem moveSystem_;
-	//InputSystem inputSystem_;
-	//PhysicsSystem physicsSystem_;
+	MoveInputSystem moveInputSystem_;
+	PhysicsSystem physicsSystem_;
 
 
 	int EntityId = 0;

@@ -1,5 +1,13 @@
 #include "RigidBody.h"
 
+RigidBody::RigidBody()
+{
+}
+
+RigidBody::~RigidBody()
+{
+}
+
 void RigidBody::SetBodyType(BodyType type)
 {
 	bodyType_ = type;

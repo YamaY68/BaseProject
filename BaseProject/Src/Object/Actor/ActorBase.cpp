@@ -14,6 +14,7 @@ void ActorBase::Load(void)
 
 void ActorBase::Init(void)
 {
+	InitCollider();
 }
 
 void ActorBase::Update(void)

@@ -144,6 +144,8 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Src\Manager\System\MoveInputSystem\MoveInputSystem.cpp" />
+    <ClCompile Include="Src\Manager\System\PhysicsSystem\PhysicsSystem.cpp" />
+    <ClCompile Include="Src\Object\Actor\Component\ComponentBase.cpp" />
     <ClCompile Include="Src\Object\Actor\Component\PlayerInputComponent\PlayerInputComponent.cpp" />
     <ClCompile Include="Src\Object\Actor\Component\RigidBodyComponent\RigidBody.cpp" />
     <ClCompile Include="Src\Object\Actor\ActorBase.cpp" />
@@ -168,6 +170,7 @@
     <ClCompile Include="Src\Object\Actor\Collider\ColliderBox.cpp" />
     <ClCompile Include="Src\Object\Actor\Collider\ColliderCapsule.cpp" />
     <ClCompile Include="Src\Object\Actor\Collider\ColliderSphere.cpp" />
+    <ClCompile Include="Src\Object\Actor\Floor\Floor.cpp" />
     <ClCompile Include="Src\Object\Actor\Shape\Box.cpp" />
     <ClCompile Include="Src\Object\Actor\Shape\Capsule.cpp" />
     <ClCompile Include="Src\Object\Actor\Shape\ShapeBase.cpp" />
@@ -182,6 +185,8 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Src\Manager\System\MoveInputSystem\MoveInputSystem.h" />
+    <ClInclude Include="Src\Manager\System\PhysicsSystem\PhysicsSystem.h" />
+    <ClInclude Include="Src\Object\Actor\Component\ComponentBase.h" />
     <ClInclude Include="Src\Object\Actor\Component\PlayerInputComponent\PlayerInputComponent.h" />
     <ClInclude Include="Src\Object\Actor\Component\RigidBodyComponent\RigidBody.h" />
     <ClInclude Include="Src\Object\Actor\ActorBase.h" />
@@ -211,6 +216,7 @@
     <ClInclude Include="Src\Object\Actor\Collider\ColliderShape.h" />
     <ClInclude Include="Src\Object\Actor\Collider\ColliderSphere.h" />
     <ClInclude Include="Src\Object\Actor\EntityKind.h" />
+    <ClInclude Include="Src\Object\Actor\Floor\Floor.h" />
     <ClInclude Include="Src\Object\Actor\Shape\Box.h" />
     <ClInclude Include="Src\Object\Actor\Shape\Capsule.h" />
     <ClInclude Include="Src\Object\Actor\Shape\ShapeBase.h" />

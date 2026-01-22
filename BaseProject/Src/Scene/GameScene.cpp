@@ -5,8 +5,6 @@
 #include"../Manager/ResourceManager.h"
 
 
-#include"../Manager/System/PhysicsSystem/PhysicsSystem.h"
-#include"../Manager/System/MoveInputSystem/MoveInputSystem.h"
 
 #include"../Object/Actor/Component/ComponentBase.h"
 #include"../Object/Actor/Component/RigidBodyComponent/RigidBody.h"
@@ -52,7 +50,6 @@ void GameScene::Load(void)
 {  
 	// オブジェクト生成  
 	std::shared_ptr<Box>box = std::make_shared<Box>();
-	actors_.push_back(box);
 	box->AddComponent(std::make_shared<PlayerInputComponent>(
 			KEY_INPUT_W, KEY_INPUT_S,
 			KEY_INPUT_A, KEY_INPUT_D,
@@ -64,6 +61,7 @@ void GameScene::Load(void)
 	rb->SetMoveSpeed(10);
 	rb->SetJumpPower(15);
 	box->AddComponent(rb);
+	actors_.push_back(box);
 
 	std::shared_ptr<Floor>floor = std::make_shared<Floor>();
 	rb = std::make_shared<RigidBody>();
@@ -95,7 +93,12 @@ void GameScene::Update(void)
 	for (auto& actor : actors_)
 	{
 		actor->Update();
+
 	}
+
+	moveInputSystem_.Update(actors_);
+	physicsSystem_.Update(actors_);
+
 }
 
 void GameScene::Draw(void)
