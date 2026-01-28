@@ -1,25 +1,14 @@
 #include "ColliderBox.h"
 #include<DxLib.h>
 
-ColliderBox::ColliderBox(void)
-{
-	ColliderBase();
-	halfSize_ = VGet(0.0f, 0.0f, 0.0f);
-}
 
-ColliderBox::ColliderBox(ColliderInfo& info, const VECTOR& halfSize)
+ColliderBox::ColliderBox(ColliderInfo& info,  VECTOR& halfSize, ActorBase* actor)
 	:
-	ColliderBase(info),
+	ColliderBase(info, actor),
 	halfSize_(halfSize)
 {
 }
 
-ColliderBox::ColliderBox(ColliderInfo& info, const VECTOR& halfSize, int color)
-	:
-	ColliderBase(info, color),
-	halfSize_(halfSize)
-{
-}
 
 ColliderBox::~ColliderBox(void)
 {

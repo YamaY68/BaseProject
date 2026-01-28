@@ -9,6 +9,7 @@ class ColliderBase;
 
 class CollisionLogic
 {
+public:
 	CollisionLogic(void);
 	~CollisionLogic(void);
 

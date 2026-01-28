@@ -7,4 +7,5 @@ enum class TAG
 	CAMERA,
 	STAGE,
 	PLAYER,
+	STATION,
 };

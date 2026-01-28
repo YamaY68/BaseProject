@@ -168,7 +168,51 @@ CollisionResult CollisionLogic::CapsuleToBox(const std::shared_ptr<ColliderBase>
 
 CollisionResult CollisionLogic::BoxToBox(const std::shared_ptr<ColliderBase>& a, const std::shared_ptr<ColliderBase>& b)
 {
-    return CollisionResult();
+    CollisionResult result;
+    auto boxA = std::dynamic_pointer_cast<ColliderBox>(a);
+    auto boxB = std::dynamic_pointer_cast<ColliderBox>(b);
+    if (!boxA || !boxB) return result;
+
+    // 1. 各ボックスの中心座標（ワールド）を取得
+    VECTOR posA = boxA->GetRotPos(boxA->GetColliderInfo().localPos);
+    VECTOR posB = boxB->GetRotPos(boxB->GetColliderInfo().localPos);
+
+    // 2. 半辺長（Half Size）を取得
+    VECTOR hA = boxA->GetHalfSize();
+    VECTOR hB = boxB->GetHalfSize();
+
+    // 3. 各軸（X, Y, Z）で重なりをチェック
+    // 中心間の距離が、お互いの半径（半辺長）の合計より小さければ重なっている
+    float dx = fabsf(posA.x - posB.x);
+    float dy = fabsf(posA.y - posB.y);
+    float dz = fabsf(posA.z - posB.z);
+
+    float overlapX = (hA.x + hB.x) - dx;
+    float overlapY = (hA.y + hB.y) - dy;
+    float overlapZ = (hA.z + hB.z) - dz;
+
+    // いずれかの軸で隙間があれば当たっていない
+    if (overlapX < 0 || overlapY < 0 || overlapZ < 0) return result;
+
+    // 全ての軸で重なっていれば衝突
+    result.isHit = true;
+
+    // 4. 押し出し情報（penetration & normal）の計算
+    // 最も重なりが小さい軸を「衝突法線」とするのが物理演算の定石
+    if (overlapX < overlapY && overlapX < overlapZ) {
+        result.penetration = overlapX;
+        result.normal = VGet((posB.x > posA.x) ? 1.0f : -1.0f, 0.0f, 0.0f);
+    }
+    else if (overlapY < overlapZ) {
+        result.penetration = overlapY;
+        result.normal = VGet(0.0f, (posB.y > posA.y) ? 1.0f : -1.0f, 0.0f);
+    }
+    else {
+        result.penetration = overlapZ;
+        result.normal = VGet(0.0f, 0.0f, (posB.z > posA.z) ? 1.0f : -1.0f);
+    }
+
+    return result;
 }
 
 CollisionResult CollisionLogic::SphereToModel(const std::shared_ptr<ColliderBase>& a, const std::shared_ptr<ColliderBase>& b)

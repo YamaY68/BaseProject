@@ -1,25 +1,14 @@
 #include "ColliderSphere.h"
 
-ColliderSphere::ColliderSphere(void)
-{
-	// ƒRƒ‰ƒCƒ_î•ñ‰Šú‰»
-	ColliderBase();
-	radius_ = 0.0f;
-}
 
-ColliderSphere::ColliderSphere(ColliderInfo& info, float radius)
+ColliderSphere::ColliderSphere(ColliderInfo& info, float radius, ActorBase* actor)
 	:
-	ColliderBase(info),
+	ColliderBase(info, actor),
 	radius_(radius)
 {
 }
 
-ColliderSphere::ColliderSphere(ColliderInfo& info, float radius, int color)
-	:
-	ColliderBase(info, color),
-	radius_(radius)
-{
-}
+
 
 ColliderSphere::~ColliderSphere(void)
 {

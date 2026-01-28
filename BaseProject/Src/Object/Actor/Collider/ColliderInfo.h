@@ -18,4 +18,5 @@ struct ColliderInfo
 	VECTOR localRot;	//ローカル回転
 	bool isTrigger;	//トリガー判定かどうか
 	bool isActive;	//有効かどうか
+	int debugColor = GetColor(255, 0, 0);
 };

@@ -143,6 +143,9 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Src\Manager\System\ContactSystem\GameContactSystem.cpp" />
+    <ClCompile Include="Src\Manager\System\ContactSystem\ContactRuleTable.cpp" />
+    <ClCompile Include="Src\Manager\System\ContactSystem\ContactSystem.cpp" />
     <ClCompile Include="Src\Manager\System\CollisionSystem\CollisionLogic.cpp" />
     <ClCompile Include="Src\Manager\System\CollisionSystem\CollisionSystem.cpp" />
     <ClCompile Include="Src\Manager\System\MoveInputSystem\MoveInputSystem.cpp" />
@@ -186,10 +189,15 @@
     <ClCompile Include="Src\Utility\AsoUtility.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Src\Manager\System\ContactSystem\GameContactSystem.h" />
+    <ClInclude Include="Src\Manager\System\ContactSystem\ContactEventInfo.h" />
+    <ClInclude Include="Src\Manager\System\ContactSystem\ContactRuleTable.h" />
+    <ClInclude Include="Src\Manager\System\ContactSystem\ContactSystem.h" />
     <ClInclude Include="Src\Manager\System\CollisionSystem\CollisionLogic.h" />
     <ClInclude Include="Src\Manager\System\CollisionSystem\CollisionSystem.h" />
     <ClInclude Include="Src\Manager\System\CollisionSystem\CollisionPairType.h" />
     <ClInclude Include="Src\Manager\System\CollisionSystem\CollisionResult.h" />
+    <ClInclude Include="Src\Manager\System\ContactSystem\GameEventType.h" />
     <ClInclude Include="Src\Manager\System\MoveInputSystem\MoveInputSystem.h" />
     <ClInclude Include="Src\Manager\System\PhysicsSystem\PhysicsSystem.h" />
     <ClInclude Include="Src\Object\Actor\Component\ComponentBase.h" />

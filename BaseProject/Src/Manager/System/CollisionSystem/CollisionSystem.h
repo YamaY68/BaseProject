@@ -6,14 +6,21 @@
 #include<map>
 #include<functional>
 #include"../../../Object/Actor/Collider/ColliderBase.h"
+#include"CollisionLogic.h"
 
 using ContactCallback = std::function<void(std::uint32_t, std::uint32_t)>;
 //フレームごとの衝突情報を保持するための型
-using pair = std::vector<std::pair<std::uint32_t, std::uint32_t>>;
+using pair = std::vector<std::pair<std::size_t, std::size_t>>;
 
 class CollisionSystem
 {
 public:
+	struct CollisionManifold {
+		ActorBase* actorA;
+		ActorBase* actorB;
+		CollisionResult result; 
+	};
+
 	CollisionSystem();
 	~CollisionSystem();
 
@@ -30,12 +37,9 @@ public:
 	}
 
 private:
-	void CollisionCheck(const std::shared_ptr<ColliderBase>&a,
-		const std::shared_ptr<ColliderBase>& b);
-
+	void BindEntityId(std::size_t index, std::uint32_t entityId);
 	void GetActiveColliders(void);
 
-	void BindEntityId(std::size_t index, std::uint32_t entityId);
 
 	/// @brief 新しく当たったもの、離れたものを抽出
 /// @param currentPairs	今フレームの接触ペア
@@ -50,10 +54,15 @@ private:
 	static constexpr float PENETRATION_ALLOWANCE = 0.05f;
 
 	std::vector<std::weak_ptr<ColliderBase>>colliders_;
-
+	std::vector<std::shared_ptr<ColliderBase>>activeColliders_;
 	std::vector<std::int32_t>entityId_;
+
+	pair prevPairs_;
 
 	ContactCallback onBegin_;
 	ContactCallback onEnd_;
+
+	//衝突情報のメインフォールド
+	std::vector<CollisionManifold>mainfolds_;
 };
 

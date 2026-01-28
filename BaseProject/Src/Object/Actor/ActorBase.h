@@ -32,7 +32,7 @@ public:
 	Transform& GetTransform(void) { return trans_; }
 
 	//エンティティID取得
-	int GetEntityId(void) const { return entityId_; }
+	size_t GetEntityId(void) const { return entityId_; }
 	//エンティティID設定
 	void SetEntityId(int id) { entityId_ = id; }
 
@@ -65,7 +65,7 @@ protected:
 
 	AnimationController* animationCOntroller_ = nullptr;
 	Transform trans_;
-	int entityId_ = -1;
+	size_t entityId_ = -1;
 
 	//自身のコライダーリスト
 	std::map<int, std::shared_ptr<ColliderBase>>ownColliders_;

@@ -5,13 +5,8 @@
 class ColliderSphere : public ColliderBase
 {
 public:
-	//デフォルトコンストラクタ
-	ColliderSphere(void);
 	//コンストラクタ
-	ColliderSphere(ColliderInfo& info, float radius);
-	//色変え用コンストラクタ
-	ColliderSphere(ColliderInfo& info, float radius, int color);
-
+	ColliderSphere(ColliderInfo& info, float radius,ActorBase*actor);
 	//デストラクタ
 	virtual ~ColliderSphere(void);
 

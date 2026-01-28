@@ -6,7 +6,6 @@ class ShapeBase :
 {
 public:
 	ShapeBase(void);
-	ShapeBase(int color);
 	~ShapeBase(void) override;
 
 protected:

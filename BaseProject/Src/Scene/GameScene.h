@@ -3,8 +3,8 @@
 
 #include <vector>
 #include <memory>
-//#include"../Manager/System/CollisionSystem/CollisionSystem/CollisionSystem.h"
-//#include"../Manager/System/ContactSystem/ContactSystem.h"
+#include"../Manager/System/CollisionSystem/CollisionSystem.h"
+#include"../Manager/System/ContactSystem/ContactSystem.h"
 #include"../Manager/System/MoveInputSystem/MoveInputSystem.h"
 //#include"../Manager/System/ContactSystem/GameContactSystem.h"
 #include"../Manager/System/PhysicsSystem/PhysicsSystem.h"
@@ -35,8 +35,8 @@ public:
 private:
 	std::vector<std::shared_ptr<ActorBase>> actors_;
 	//// è’ìÀîªíËÉVÉXÉeÉÄ
-	//CollisionSystem collisionSystem_;
-	//ContactSystem contactSystem_;
+	CollisionSystem collisionSystem_;
+	ContactSystem contactSystem_;
 	//GameContactSystem gameContactSystem_;
 
 	MoveInputSystem moveInputSystem_;

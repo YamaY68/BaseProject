@@ -6,9 +6,7 @@ class Box :
 {
 public:
 	Box(void);
-	Box(int color);
 	Box(const VECTOR& halfSize);
-	Box(const VECTOR& halfSize, int color);
 	~Box(void) override;
 
 private:

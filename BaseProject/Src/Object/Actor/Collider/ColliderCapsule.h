@@ -4,15 +4,9 @@ class ColliderCapsule :
     public ColliderBase
 {
 public:
-	//デフォルトコンストラクタ
-	ColliderCapsule(void);
 	//コンストラクタ
 	ColliderCapsule(ColliderInfo& info, float radius,
-		const VECTOR&localPosTop,const VECTOR&localPosDown);
-	//色変え用コンストラクタ
-	ColliderCapsule(ColliderInfo& info, float radius,
-		const VECTOR& localPosTop, const VECTOR& localPosDown,
-		int color);
+		 VECTOR&localPosTop, VECTOR&localPosDown,ActorBase*actor);
 
 	//デストラクタ
 	virtual ~ColliderCapsule(void);

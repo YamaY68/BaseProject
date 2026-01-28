@@ -58,7 +58,7 @@ void GameScene::Load(void)
 	rb->SetBodyType(RigidBody::BodyType::DYNAMIC);
 	rb->SetMass(10.0f);
 	rb->SetUseGravity(true);
-	rb->SetMoveSpeed(10);
+	rb->SetMoveSpeed(20);
 	rb->SetJumpPower(15);
 	box->AddComponent(rb);
 	actors_.push_back(box);
@@ -78,11 +78,25 @@ void GameScene::Load(void)
 
 void GameScene::Init(void)
 {
+	auto onBeginContact = [this](uint32_t a, uint32_t b)
+		{
+			contactSystem_.OnBeginContact(a, b, CollisionResult{});
+		};
+	auto onEndContact = [this](uint32_t a, uint32_t b)
+		{
+			contactSystem_.OnEndContact(a, b, CollisionResult{});
+		};
+
+	collisionSystem_.SetContactCallbacks(
+		static_cast<ContactCallback>(onBeginContact),
+		static_cast<ContactCallback>(onEndContact)
+	);
 
 	for (auto& actor : actors_)
 	{
 		actor->Init();
 		actor->SetEntityId(EntityId);
+		collisionSystem_.AddCollider(actor->GetOwnColliders());
 		EntityId++;
 	}
 }
@@ -98,6 +112,7 @@ void GameScene::Update(void)
 
 	moveInputSystem_.Update(actors_);
 	physicsSystem_.Update(actors_);
+	collisionSystem_.Update();
 
 }
 

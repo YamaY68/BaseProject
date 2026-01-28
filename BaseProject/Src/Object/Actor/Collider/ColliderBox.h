@@ -4,15 +4,9 @@
 class ColliderBox : public ColliderBase
 {
 public:
-	// デフォルトコンストラクタ
-	ColliderBox(void);
-
 	// コンストラクタ
 	// halfSize : 各軸方向の半サイズ（中心からの距離）
-	ColliderBox(ColliderInfo& info, const VECTOR& halfSize);
-	//色変えようコンストラクタ
-	ColliderBox(ColliderInfo& info, const VECTOR& halfSize, int color);
-
+	ColliderBox(ColliderInfo& info,  VECTOR& halfSize,ActorBase*actor);
 	// デストラクタ
 	virtual ~ColliderBox(void);
 

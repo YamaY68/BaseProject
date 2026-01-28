@@ -11,12 +11,6 @@ Sphere::Sphere(void)
 {  
 }
 
-Sphere::Sphere(int color)
-    :
-    ShapeBase(color),
-	radius_(100.0f)
-{
-}
 
 Sphere::Sphere(float radius)
 	:
@@ -25,12 +19,7 @@ Sphere::Sphere(float radius)
 {
 }
 
-Sphere::Sphere(float radius, int color)
-    :
-	ShapeBase(color),
-	radius_(radius)
-{
-}
+
 
 Sphere::~Sphere(void)  
 {  
@@ -69,7 +58,7 @@ void Sphere::InitCollider(void)
        true,
        false,  
    };  
-   std::shared_ptr<ColliderSphere> collider =
-	   std::make_shared<ColliderSphere>(info, radius_,color);
+   std::shared_ptr<ColliderSphere>collider=
+	   std::make_shared<ColliderSphere>(info, radius_, this);
    ownColliders_.emplace(static_cast<int>(SHAPE::SPHERE), collider);
 }

@@ -47,7 +47,7 @@ void Floor::InitCollider(void)
 		true
 	};
 	std::shared_ptr<ColliderBox>collider =
-		std::make_shared<ColliderBox>(info, size_);
+		std::make_shared<ColliderBox>(info, size_,this);
 	ownColliders_.emplace(static_cast<int>(SHAPE::BOX), collider);
 
 }

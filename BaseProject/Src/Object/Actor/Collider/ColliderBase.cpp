@@ -1,36 +1,13 @@
 #include "ColliderBase.h"
 #include"../../Common/Transform.h"
 
-ColliderBase::ColliderBase(void)
-{
-	// ÉRÉâÉCÉ_èÓïÒèâä˙âª
-	colliderInfo_.shape = SHAPE::NONE;
-	colliderInfo_.targetTransform = nullptr;
-	colliderInfo_.tag = TAG::NONE;
-	colliderInfo_.layer = Layer::NONE;
-	colliderInfo_.mask = 0;
-	colliderInfo_.localPos = VGet(0.0f, 0.0f, 0.0f);
-	colliderInfo_.localRot = VGet(0.0f, 0.0f, 0.0f);
-	colliderInfo_.isTrigger = false;
-	colliderInfo_.isActive = false;
 
-}
-
-ColliderBase::ColliderBase(ColliderInfo& info)
-	:
-	colliderInfo_(info)
-{
-	debugColor_ = COLOR_INVALID;
-}
-
-ColliderBase::ColliderBase(ColliderInfo& info, int color)
+ColliderBase::ColliderBase(ColliderInfo& info, ActorBase* actor)
 	:
 	colliderInfo_(info),
-	debugColor_(color)
+	actor_(actor)
 {
 }
-
-
 
 void ColliderBase::Init(void)
 {

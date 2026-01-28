@@ -11,11 +11,7 @@ Box::Box(void)
 {
 }
 
-Box::Box(int color)
-	:
-	ShapeBase(color)
-{
-}
+
 
 Box::Box(const VECTOR& halfSize)
 	:
@@ -24,12 +20,6 @@ Box::Box(const VECTOR& halfSize)
 {
 }
 
-Box::Box(const VECTOR& halfSize, int color)
-	:
-	ShapeBase(color),
-	halfSize_(halfSize)
-{
-}
 
 
 
@@ -58,15 +48,15 @@ void Box::InitCollider(void)
     ColliderInfo info = {
     SHAPE::BOX,
     &trans_,
-    TAG::NONE,
+    TAG::PLAYER,
     Layer::ACTOR,
-    0,
+    ColliderBase::SetMask({Layer::ACTOR,Layer::STAGE}),
     VGet(0.0f, 0.0f, 0.0f),
     VGet(0.0f, 0.0f, 0.0f),
     true,
-    false,
+    true,
     };
     std::shared_ptr<ColliderBox> collider =
-		std::make_shared<ColliderBox>(info, halfSize_, this->color);
+		std::make_shared<ColliderBox>(info, halfSize_, this);
 	ownColliders_.emplace(static_cast<int>(SHAPE::BOX), collider);
 }

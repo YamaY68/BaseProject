@@ -1,32 +1,12 @@
 #include "ColliderCapsule.h"
 #include<DxLib.h>
-ColliderCapsule::ColliderCapsule(void)
-{
-	// ÉRÉâÉCÉ_èÓïÒèâä˙âª
-	ColliderBase();
-	radius_ = 0.0f;
-	localPosTop_ = VGet(0.0f, 0.0f, 0.0f);
-	localPosDown_ = VGet(0.0f, 0.0f, 0.0f);
-}
 
-ColliderCapsule::ColliderCapsule(ColliderInfo& info, float radius, const VECTOR& localPosTop, const VECTOR& localPosDown)
-    :
-	ColliderBase(info),
-	radius_(radius),
-	localPosTop_(localPosTop),
-	localPosDown_(localPosDown)
-{
-}
 
-ColliderCapsule::ColliderCapsule(ColliderInfo& info, float radius, const VECTOR& localPosTop, const VECTOR& localPosDown, int color)
+ColliderCapsule::ColliderCapsule(ColliderInfo& info, float radius,  VECTOR& localPosTop,  VECTOR& localPosDown, ActorBase* actor)
 	:
-	ColliderBase(info, color),
-	radius_(radius),
-	localPosTop_(localPosTop),
-	localPosDown_(localPosDown)
+	ColliderBase(info, actor), radius_(radius), localPosTop_(localPosTop), localPosDown_(localPosDown)
 {
 }
-
 ColliderCapsule::~ColliderCapsule(void)
 {
 }

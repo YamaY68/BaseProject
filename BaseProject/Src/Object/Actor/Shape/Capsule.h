@@ -5,9 +5,7 @@ class Capsule :
 {
 public:
 	Capsule(void);
-	Capsule(int color);
 	Capsule(float radius, VECTOR localPosTop, VECTOR localPosDown);
-	Capsule(float radius, VECTOR localPosTop,VECTOR localPosDown,int color);
 	~Capsule(void) override;
 
 protected:

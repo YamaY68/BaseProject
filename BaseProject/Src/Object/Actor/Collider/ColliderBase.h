@@ -11,12 +11,8 @@ class ColliderBase
 {  
 public:
 
-	//デフォルトコンストラクタ
-   ColliderBase(void);
    //コンストラクタ
-   ColliderBase(ColliderInfo& info);
-   //色変えコンストラクタ
-   ColliderBase(ColliderInfo& info, int color);
+   ColliderBase(ColliderInfo& info, ActorBase*actor);
 
 
    //デストラクタ
@@ -57,9 +53,9 @@ public:
            mask |= LAYER_BIT(layer);  
        return mask;  
    }  
-protected:  
 	// ローカル座標から回転後のワールド座標を取得
    VECTOR GetRotPos(const VECTOR& localPos) const;  
+protected:  
    // デバッグ描画
    virtual void DrawDebug(int color) {};  
 
