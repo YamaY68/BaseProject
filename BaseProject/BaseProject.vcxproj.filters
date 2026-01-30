@@ -311,5 +311,8 @@
     <ClInclude Include="Src\Manager\System\CollisionSystem\CollisionSolver.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
+    <ClInclude Include="Src\Object\Actor\ActorType.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

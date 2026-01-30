@@ -201,6 +201,7 @@
     <ClInclude Include="Src\Manager\System\ContactSystem\GameEventType.h" />
     <ClInclude Include="Src\Manager\System\MoveInputSystem\MoveInputSystem.h" />
     <ClInclude Include="Src\Manager\System\PhysicsSystem\PhysicsSystem.h" />
+    <ClInclude Include="Src\Object\Actor\ActorType.h" />
     <ClInclude Include="Src\Object\Actor\Component\ComponentBase.h" />
     <ClInclude Include="Src\Object\Actor\Component\PlayerInputComponent\PlayerInputComponent.h" />
     <ClInclude Include="Src\Object\Actor\Component\RigidBodyComponent\RigidBody.h" />

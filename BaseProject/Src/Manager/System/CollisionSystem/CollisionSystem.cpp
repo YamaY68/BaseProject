@@ -26,57 +26,70 @@ void CollisionSystem::Update(void)
 {
 	GetActiveColliders();
 
-	// 今回当たっているペアを貯めるリスト
 	std::vector<std::pair<std::size_t, std::size_t>> currentPairs;
-	
+
 	for (size_t i = 0; i < activeColliders_.size(); i++)
 	{
 		for (size_t j = i + 1; j < activeColliders_.size(); j++)
 		{
 			auto& a = activeColliders_[i];
 			auto& b = activeColliders_[j];
+
 			// レイヤーマスクの判定
 			if (!ColliderBase::IsLayerMatch(b->GetColliderInfo().layer, a->GetColliderInfo().mask) &&
-				!ColliderBase::IsLayerMatch(a->GetColliderInfo().layer, b->GetColliderInfo().mask))continue;
-	
-			// 衝突判定
-			CollisionPairType pairType = CollisionLogic::GetCollisionPairType(
-				a->GetColliderInfo().shape,
-				b->GetColliderInfo().shape);
-		
-			// 衝突判定の実行
-			CollisionResult result = CollisionLogic::DispatchCollision(pairType, a, b);
+				!ColliderBase::IsLayerMatch(a->GetColliderInfo().layer, b->GetColliderInfo().mask)) continue;
 
-			//当たっていない場合はスキップ
+			// 1. 形状の順序をチェック（GetCollisionPairTypeの内部ロジックと合わせる）
+			SHAPE shapeA = a->GetColliderInfo().shape;
+			SHAPE shapeB = b->GetColliderInfo().shape;
+
+			auto finalA = a;
+			auto finalB = b;
+			bool swapped = false;
+
+			// 形状IDが大きい方を後ろにするように揃える
+			if (shapeA > shapeB) {
+				std::swap(finalA, finalB);
+				swapped = true;
+			}
+
+			// 2. 衝突判定の実行（揃えた引数を渡す）
+			CollisionPairType pairType = CollisionLogic::GetCollisionPairType(
+				finalA->GetColliderInfo().shape,
+				finalB->GetColliderInfo().shape);
+
+			CollisionResult result = CollisionLogic::DispatchCollision(pairType, finalA, finalB);
+
+			// 当たっていない場合はスキップ
 			if (!result.isHit || result.penetration < PENETRATION_ALLOWANCE) continue;
 
-			//当たっているペアを保存
+			// 3. 重要：入れ替えて判定した場合は、法線を「本来のAからBへの向き」に反転させる
+			if (swapped) {
+				result.normal = VScale(result.normal, -1.0f);
+			}
+
+			// 当たっているペアを保存
 			auto idA = a->GetFollowActor()->GetEntityId();
 			auto idB = b->GetFollowActor()->GetEntityId();
-			currentPairs.push_back({(std::min)(idA,idB),(std::max)(idA,idB)});
-			
-			solver.push_back(CollisionSolver{ a->GetFollowActor(),b->GetFollowActor(),result });
+			currentPairs.push_back({ (std::min)(idA, idB), (std::max)(idA, idB) });
+
+			// Solverには「本来のa, b」の順で結果を渡す
+			solver.push_back(CollisionSolver{ a->GetFollowActor(), b->GetFollowActor(), result });
 		}
 	}
-	// 新規ペアと消失ペアを抽出
-	std::vector<std::pair<std::size_t, std::size_t>>begins, ends;
+
+	// --- 以降、DiffPairsとコールバック処理（変更なし） ---
+	std::vector<std::pair<std::size_t, std::size_t>> begins, ends;
 	DiffPairs(currentPairs, prevPairs_, begins, ends);
 
-	// 5. コールバック実行（IDをそのまま渡す）
 	if (onBegin_) {
-		for (auto [idA, idB] : begins) {
-			onBegin_(idA, idB);
-		}
+		for (auto [idA, idB] : begins) onBegin_(idA, idB);
 	}
 	if (onEnd_) {
-		for (auto [idA, idB] : ends) {
-			onEnd_(idA, idB);
-		}
+		for (auto [idA, idB] : ends) onEnd_(idA, idB);
 	}
 
-	//次フレームのために保存
 	prevPairs_ = std::move(currentPairs);
-
 }
 
 void CollisionSystem::GetActiveColliders(void)

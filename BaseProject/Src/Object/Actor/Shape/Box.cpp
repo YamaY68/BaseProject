@@ -7,7 +7,7 @@
 Box::Box(void)
 	:
 	ShapeBase(),
-	halfSize_({10.0f,10.0f,10.0f})
+	halfSize_({100.0f,100.0f,100.0f})
 {
 }
 

@@ -13,6 +13,8 @@
 #include"../Object/Actor/ActorBase.h"
 
 #include"../Object/Actor/Shape/Box.h"
+#include"../Object/Actor/Shape/Capsule.h"
+#include"../Object/Actor/Shape/Sphere.h"
 
 #include"../Object/Actor/Camera/Camera.h"
 
@@ -49,25 +51,11 @@ std::vector<std::shared_ptr<T>> ObjSearch(const std::vector<std::shared_ptr<Acto
 void GameScene::Load(void)  
 {  
 	// オブジェクト生成  
-	std::shared_ptr<Box>box = std::make_shared<Box>();
-	box->AddComponent(std::make_shared<PlayerInputComponent>(
-		KEY_INPUT_W, KEY_INPUT_S,
-		KEY_INPUT_A, KEY_INPUT_D,
-		KEY_INPUT_Q, KEY_INPUT_E)).
-		GetComponent<PlayerInputComponent>().SetJumpKey(KEY_INPUT_SPACE);
-
 	auto rb = std::make_shared<RigidBody>();
-	rb->SetBodyType(RigidBody::BodyType::DYNAMIC);
-	rb->SetMass(10.0f);
-	rb->SetUseGravity(true);
-	rb->SetMoveSpeed(40);
-	rb->SetJumpPower(40);
-	box->AddComponent(rb);
-	actors_.push_back(box);
+	auto playerInput = std::make_shared<PlayerInputComponent>();
 
 	std::shared_ptr<Floor>floor = std::make_shared<Floor>();
 	rb = std::make_shared<RigidBody>();
-	rb->SetBodyType(RigidBody::BodyType::STATIC);
 	rb->SetBodyType(RigidBody::BodyType::STATIC);
 	rb->SetMass(0.0f);
 	floor->AddComponent(rb);

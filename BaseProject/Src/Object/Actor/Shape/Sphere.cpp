@@ -50,13 +50,13 @@ void Sphere::InitCollider(void)
    ColliderInfo info = {  
        SHAPE::SPHERE,  
        &trans_,  
-       TAG::NONE,  
-       Layer::NONE,  
-       0,  
+    TAG::PLAYER,
+    Layer::ACTOR,
+    ColliderBase::SetMask({Layer::ACTOR,Layer::STAGE}),
        VGet(0.0f, 0.0f, 0.0f),  
        VGet(0.0f, 0.0f, 0.0f),  
-       true,
-       false,  
+    true,
+    true,
    };  
    std::shared_ptr<ColliderSphere>collider=
 	   std::make_shared<ColliderSphere>(info, radius_, this);

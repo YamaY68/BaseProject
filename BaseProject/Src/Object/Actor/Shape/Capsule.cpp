@@ -28,6 +28,7 @@ Capsule::~Capsule(void)
 
 void Capsule::SubInit(void)
 {
+	trans_.pos = VGet(0.0f, 100.0f, 100.0f);
 }
 
 void Capsule::SubUpdate(void)
@@ -48,13 +49,13 @@ void Capsule::InitCollider(void)
 	ColliderInfo info = {
 	SHAPE::CAPSULE,
 	&trans_,
-	TAG::NONE,
-	Layer::NONE,
-	0,
+	TAG::PLAYER,
+	Layer::ACTOR,
+	ColliderBase::SetMask({Layer::ACTOR,Layer::STAGE}),
 	VGet(0.0f, 0.0f, 0.0f),
 	VGet(0.0f, 0.0f, 0.0f),
 	true,
-	false,
+	true,
 	};
 	std::shared_ptr<ColliderCapsule> collider =
 		std::make_shared<ColliderCapsule>(info, radius_,localPosTop_,localPosDown_,this);

@@ -88,7 +88,7 @@ void PhysicsSystem::Resolve(std::vector<CollisionSolver>& solver)
             // 接地判定：法線が上向き（0.5f以上）なら「床」とみなす
             // normalはAからBへの向きなので、Aから見て床(B)が下にある場合、normal.yは負の値
             // その逆方向(-normal.y)が正ならAは上に押し戻されている
-            if (res.normal.y < -0.5f)
+            if (res.normal.y < -0.9f)
             {
                 rbA.SetGrounded(true);
                 // 落下速度を止める
@@ -104,7 +104,7 @@ void PhysicsSystem::Resolve(std::vector<CollisionSolver>& solver)
             actorB->GetTransform().pos = VAdd(actorB->GetTransform().pos, VScale(res.normal, res.penetration * pushB));
 
             // Bから見てAが上にいる（Bが下から支えている）場合
-            if (res.normal.y > 0.5f)
+            if (res.normal.y > 0.9f)
             {
                 rbB.SetGrounded(true);
                 VECTOR vel = rbB.GetVelocity();
