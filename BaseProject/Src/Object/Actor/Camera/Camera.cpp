@@ -11,7 +11,7 @@ Camera::Camera(void)
 	:
 	ActorBase(),
 	mode_(MODE::FIXED_POINT),
-	angles_(AsoUtility::VECTOR_ZERO),
+	angles_((AsoUtility::Deg2RadF(70),0,0)),
 	rotY_(Quaternion::Identity()),
 	targetPos_(AsoUtility::VECTOR_ZERO),
 	followTransform_(nullptr)

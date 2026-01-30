@@ -7,7 +7,7 @@
 Box::Box(void)
 	:
 	ShapeBase(),
-	halfSize_({100.0f,100.0f,100.0f})
+	halfSize_({10.0f,10.0f,10.0f})
 {
 }
 
@@ -29,6 +29,7 @@ Box::~Box(void)
 
 void Box::SubInit(void)
 {
+    trans_.pos = VGet(0.0f, 200.0f, 0.0f);
 }
 
 void Box::SubUpdate(void)

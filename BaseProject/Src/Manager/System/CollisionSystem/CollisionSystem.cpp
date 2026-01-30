@@ -14,10 +14,6 @@ void CollisionSystem::AddCollider(const std::map<int,std::shared_ptr<ColliderBas
 	for (auto& c : colliders)
 	{
 		colliders_.push_back(c.second);
-		auto actor=c.second->GetFollowActor();
-		size_t index = colliders_.size() - 1;
-		BindEntityId(index, actor->GetEntityId());
-		
 	}
 }
 
@@ -48,6 +44,7 @@ void CollisionSystem::Update(void)
 				a->GetColliderInfo().shape,
 				b->GetColliderInfo().shape);
 		
+			// 衝突判定の実行
 			CollisionResult result = CollisionLogic::DispatchCollision(pairType, a, b);
 
 			//当たっていない場合はスキップ
@@ -58,26 +55,22 @@ void CollisionSystem::Update(void)
 			auto idB = b->GetFollowActor()->GetEntityId();
 			currentPairs.push_back({(std::min)(idA,idB),(std::max)(idA,idB)});
 			
-			mainfolds_.push_back(CollisionManifold{ a->GetFollowActor(),b->GetFollowActor(),result });
+			solver.push_back(CollisionSolver{ a->GetFollowActor(),b->GetFollowActor(),result });
 		}
 	}
 	// 新規ペアと消失ペアを抽出
 	std::vector<std::pair<std::size_t, std::size_t>>begins, ends;
 	DiffPairs(currentPairs, prevPairs_, begins, ends);
 
-	//コールバック実行
+	// 5. コールバック実行（IDをそのまま渡す）
 	if (onBegin_) {
 		for (auto [idA, idB] : begins) {
-			auto realIdA = (idA < entityId_.size() ? entityId_[idA] : idA);
-			auto realIdB = (idB < entityId_.size() ? entityId_[idB] : idB);
-			onBegin_(realIdA, realIdB);
+			onBegin_(idA, idB);
 		}
 	}
 	if (onEnd_) {
 		for (auto [idA, idB] : ends) {
-			auto realIdA = (idA < entityId_.size() ? entityId_[idA] : idA);
-			auto realIdB = (idB < entityId_.size() ? entityId_[idB] : idB);
-			onEnd_(realIdA, realIdB);
+			onEnd_(idA, idB);
 		}
 	}
 
@@ -99,15 +92,7 @@ void CollisionSystem::GetActiveColliders(void)
 	}
 }
 
-void CollisionSystem::BindEntityId(std::size_t index, std::uint32_t entityId)
-{
-	if (index >= entityId_.size())
-	{
-		entityId_.resize(index + 1);
 
-	}
-	entityId_[index] = entityId;
-}
 
 void CollisionSystem::DiffPairs(pair& currentPairs, pair& prevPairs, pair& beginPairs, pair& endPairs)
 {	//正規化関数

@@ -2,7 +2,7 @@
 #include <DxLib.h>
 #include"../ActorBase.h"
 #include"../../../Common/Quaternion.h"
-
+#include"../.../../../../Utility/AsoUtility.h"
 class Transform;
 
 class Camera : public ActorBase
@@ -11,7 +11,7 @@ class Camera : public ActorBase
 public:
 
 	// カメラの初期座標
-	static constexpr VECTOR DERFAULT_POS = { 0.0f, 200.0f, -500.0f };
+	static constexpr VECTOR DERFAULT_POS = { 0.0f, 400.0f, -500.0f };
 
 	// カメラの初期角度
 	static constexpr VECTOR DERFAULT_ANGLES = {

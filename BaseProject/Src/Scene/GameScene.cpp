@@ -51,15 +51,17 @@ void GameScene::Load(void)
 	// オブジェクト生成  
 	std::shared_ptr<Box>box = std::make_shared<Box>();
 	box->AddComponent(std::make_shared<PlayerInputComponent>(
-			KEY_INPUT_W, KEY_INPUT_S,
-			KEY_INPUT_A, KEY_INPUT_D,
-			KEY_INPUT_Q, KEY_INPUT_E));
+		KEY_INPUT_W, KEY_INPUT_S,
+		KEY_INPUT_A, KEY_INPUT_D,
+		KEY_INPUT_Q, KEY_INPUT_E)).
+		GetComponent<PlayerInputComponent>().SetJumpKey(KEY_INPUT_SPACE);
+
 	auto rb = std::make_shared<RigidBody>();
 	rb->SetBodyType(RigidBody::BodyType::DYNAMIC);
 	rb->SetMass(10.0f);
 	rb->SetUseGravity(true);
-	rb->SetMoveSpeed(20);
-	rb->SetJumpPower(15);
+	rb->SetMoveSpeed(40);
+	rb->SetJumpPower(40);
 	box->AddComponent(rb);
 	actors_.push_back(box);
 
@@ -109,10 +111,15 @@ void GameScene::Update(void)
 		actor->Update();
 
 	}
-
 	moveInputSystem_.Update(actors_);
-	physicsSystem_.Update(actors_);
+
+	
+	for(int i=0;i<3;i++)
+	{
+ 	physicsSystem_.Update(actors_);
 	collisionSystem_.Update();
+	physicsSystem_.Resolve(collisionSystem_.GetMainfolds());
+	}
 
 }
 

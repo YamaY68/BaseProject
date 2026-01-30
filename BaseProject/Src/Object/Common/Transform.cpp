@@ -8,11 +8,13 @@ Transform::Transform(void)
     scl = AsoUtility::VECTOR_ONE;
     rot = AsoUtility::VECTOR_ZERO;
     pos = AsoUtility::VECTOR_ZERO;
+	prevPos = AsoUtility::VECTOR_ZERO;
     localPos = AsoUtility::VECTOR_ZERO;
 
     matScl = MGetIdent();
     matRot = MGetIdent();
     matPos = MGetIdent();
+
 }
 Transform::Transform(int model)
 {
@@ -21,6 +23,7 @@ Transform::Transform(int model)
     scl = AsoUtility::VECTOR_ONE;
     rot = AsoUtility::VECTOR_ZERO;
     pos = AsoUtility::VECTOR_ZERO;
+	prevPos = AsoUtility::VECTOR_ZERO;
     localPos = AsoUtility::VECTOR_ZERO;
 
     matScl = MGetIdent();
@@ -35,6 +38,8 @@ Transform::~Transform(void)
 
 void Transform::Update(void)
 {
+	prevPos = pos;
+
     // ‘å‚«‚³
     matScl = MGetScale(scl);
 

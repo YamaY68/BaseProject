@@ -189,6 +189,7 @@
     <ClCompile Include="Src\Utility\AsoUtility.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Src\Manager\System\CollisionSystem\CollisionSolver.h" />
     <ClInclude Include="Src\Manager\System\ContactSystem\GameContactSystem.h" />
     <ClInclude Include="Src\Manager\System\ContactSystem\ContactEventInfo.h" />
     <ClInclude Include="Src\Manager\System\ContactSystem\ContactRuleTable.h" />

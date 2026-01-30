@@ -7,6 +7,7 @@
 #include<functional>
 #include"../../../Object/Actor/Collider/ColliderBase.h"
 #include"CollisionLogic.h"
+#include"CollisionSolver.h"
 
 using ContactCallback = std::function<void(std::uint32_t, std::uint32_t)>;
 //フレームごとの衝突情報を保持するための型
@@ -15,11 +16,7 @@ using pair = std::vector<std::pair<std::size_t, std::size_t>>;
 class CollisionSystem
 {
 public:
-	struct CollisionManifold {
-		ActorBase* actorA;
-		ActorBase* actorB;
-		CollisionResult result; 
-	};
+
 
 	CollisionSystem();
 	~CollisionSystem();
@@ -36,9 +33,14 @@ public:
 		onEnd_ = onEnd;
 	}
 
+	std::vector<CollisionSolver>& GetMainfolds()
+	{
+		return solver;
+	}
 private:
-	void BindEntityId(std::size_t index, std::uint32_t entityId);
+	// アクティブなコライダーを抽出
 	void GetActiveColliders(void);
+
 
 
 	/// @brief 新しく当たったもの、離れたものを抽出
@@ -63,6 +65,6 @@ private:
 	ContactCallback onEnd_;
 
 	//衝突情報のメインフォールド
-	std::vector<CollisionManifold>mainfolds_;
+	std::vector<CollisionSolver>solver;
 };
 
